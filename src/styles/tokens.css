@@ -1,0 +1,22 @@
+/* Update these values from Figma and the whole site follows. */
+:root {
+  --color-primary: #12372a;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #e0a030;
+  --color-surface: #ffffff;
+  --color-bg: #f4f7f5;
+  --color-text: #17211c;
+  --color-muted: #5b6b63;
+  --color-border: #d9e2dc;
+  --color-danger: #b3261e;
+
+  --font-base: 'Sora', system-ui, sans-serif;
+  --fs-body: 1rem;
+  --fs-lead: 1.2rem;
+  --fs-h1: clamp(2.2rem, 5vw, 3.6rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2rem);
+
+  --space-1: .5rem; --space-2: 1rem; --space-3: 1.5rem; --space-4: 3rem; --space-5: 5rem;
+  --radius: 12px;
+  --container: 1100px;
+}
