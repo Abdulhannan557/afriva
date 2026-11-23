@@ -1,3 +1,4 @@
+
 # Afriva Web
 
 React + Vite + React Router. Run: `npm install && npm run dev`
@@ -20,3 +21,7 @@ Add a new API area: create `features/<name>/<name>Service.js` using `api.get/pos
 
 ## Matching Figma
 Edit `src/styles/tokens.css` (colours, fonts, spacing) and `src/data/*.js` (copy).
+=======
+# afriva
+Afriva – Premium E-commerce Web Application
+
