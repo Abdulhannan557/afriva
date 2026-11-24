@@ -1,3 +1,5 @@
+import smtplib
+from sqlalchemy import text
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,3 +48,40 @@ def health_check():
     return {
         "status": "healthy"
     }
+@app.get("/diagnostics")
+def diagnostics():
+    results = {}
+
+    # Test database
+    try:
+        from app.database import engine
+
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+
+        results["database"] = "connected"
+
+    except Exception as e:
+        results["database"] = f"failed: {type(e).__name__}"
+
+    # Test SMTP connection and authentication
+    try:
+        from app.core.config import settings
+
+        with smtplib.SMTP(
+            settings.SMTP_HOST,
+            settings.SMTP_PORT,
+            timeout=10
+        ) as server:
+            server.starttls()
+            server.login(
+                settings.SMTP_USER,
+                settings.SMTP_PASSWORD
+            )
+
+        results["smtp"] = "authenticated"
+
+    except Exception as e:
+        results["smtp"] = f"failed: {type(e).__name__}"
+
+    return results
