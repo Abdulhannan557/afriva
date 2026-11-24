@@ -14,7 +14,8 @@ def send_verification_email(
         raise RuntimeError("SMTP credentials are not configured.")
 
     verification_link = (
-        f"http://localhost:5173/verify-email?token={token}"
+        f"{settings.FRONTEND_URL.rstrip('/')}"
+        f"/verify-email?token={token}"
     )
 
     message = EmailMessage()
@@ -34,7 +35,13 @@ If you did not create an Afriva account, ignore this email.
 """
     )
 
-    with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+    with smtplib.SMTP(
+        settings.SMTP_HOST,
+        settings.SMTP_PORT
+    ) as server:
         server.starttls()
-        server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+        server.login(
+            settings.SMTP_USER,
+            settings.SMTP_PASSWORD
+        )
         server.send_message(message)

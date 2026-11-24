@@ -7,6 +7,7 @@ load_dotenv()
 
 class Settings:
     APP_NAME = "Afriva API"
+
     DATABASE_URL = os.getenv(
         "DATABASE_URL",
         "sqlite:///./afriva.db"
@@ -17,6 +18,11 @@ class Settings:
     SMTP_USER = os.getenv("SMTP_USER", "")
     SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
     EMAIL_FROM = os.getenv("EMAIL_FROM", "")
+
+    FRONTEND_URL = os.getenv(
+        "FRONTEND_URL",
+        "http://localhost:5173"
+    )
 
 
 settings = Settings()
